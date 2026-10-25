@@ -34,6 +34,9 @@ jobs:
     needs: [generate-bridge]
     name: build rustdesk android apk ${{ matrix.job.target }}
     runs-on: ${{ matrix.job.os }}
+    # Netronix: GITHUB_TOKEN is read-only by default in this fork; the release step needs write.
+    permissions:
+      contents: write
     strategy:
       fail-fast: false
       matrix:
